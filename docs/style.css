@@ -1,0 +1,15 @@
+/* Author: Matt Nguyen
+Class: CPSC332
+Assignment: Homework 5
+Last Modified: 10/25/2022 */
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+canvas {
+    background: #fefae0;
+    display: block;
+    margin: 0 auto;
+}
