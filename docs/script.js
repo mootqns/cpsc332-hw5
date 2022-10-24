@@ -284,6 +284,6 @@ window.onload = function () {
 
     //draw the menu.
     //we don't want to immediately draw... only when we click start game            
-    draw();
+    // draw();
 
 };//end window.onload function
