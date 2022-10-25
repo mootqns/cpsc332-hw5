@@ -18,26 +18,28 @@
 
 <body>
     <canvas id="myCanvas" width="480" height="320"></canvas>
-    
+
     <fieldset id="settings">
         <legend>Options</legend>
             <div>
-                <input id="shuffle-cards"
-                name="shuffle-cards"
-                type="checkbox" checked>
-                <label for="shuffle-cards">Shuffle Cards</label>
+                <input type="button" id="pause-game" name="pause-game" 
+                    class="large-button" value="Pause Game">
+            </div>
+            <div class="slider">
+                <label for="game-speed">Game Speed: <span id="slider-value"></span></label>
+                <input type="range" min="0.05" max="4.0" step="0.05" value="1.00" id="game-speed">
+            </div>
+            <div class="small-button-div">
+                <input type="button" id="new-game" name="new-game" 
+                    class="small-button" value="New Game (Reset)">
+            </div>
+            <div class="small-button-div">
+                <input type="button" id="cont-playing" name="cont-playing" 
+                    class="small-button" value="Continue Playing">
             </div>
             <div>
-                <input id="remove-correct"
-                    name="remove-correct"
-                    type="checkbox">
-                    <label for="remove-correct">Remove Correct From Deck</label>
-            </div>
-            <div>
-                <input id="timed-session"
-                name="timed-session"
-                type="checkbox">
-                <label for="timed-session">Timed Session</label>
+                <input type="button" id="reload-window" name="reload-window" 
+                    class="large-button" value="Reload Window">
             </div>
     </fieldset>
 </body>

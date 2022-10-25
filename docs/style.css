@@ -18,4 +18,43 @@ canvas {
     width: 480px;
     display: block;
     margin: 0 auto;
+    border: 2px dashed #264653;
+    border-radius: 5px;
+    
+}
+
+.large-button {
+    width: 460px;
+    display: block;
+    margin: 0.75em auto;
+    text-align: center;
+}
+
+legend {
+    padding: 5px;
+}
+
+.small-button {
+    width: 225px;
+    margin: 2px 4px;
+    text-align: center;
+}
+
+.small-button-div {
+    display: inline-block;
+}
+
+#new-game {
+    margin-left: 10px;
+    margin-right: 2px;
+}
+
+#game-speed {
+    width: 460px;
+    display: block;
+    margin: 1px auto;
+}
+
+.slider label {
+    margin: auto 8px;
 }

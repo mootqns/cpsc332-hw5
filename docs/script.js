@@ -298,9 +298,20 @@ window.onload = function () {
         //reset score and lives               
     };
 
+    //function to display game-speed slider value 
+    function displaySlider() {
+        var slider = document.getElementById("game-speed");
+        var output = document.getElementById("slider-value");
+
+        output.innerHTML = slider.value;
+        slider.oninput = function() {
+            output.innerHTML = this.value;
+        }
+    }
     //draw the menu.
     //we don't want to immediately draw... only when we click start game          
-    drawMenu();  
+    drawMenu(); 
+    displaySlider(); 
     //draw();
 
 };//end window.onload function
