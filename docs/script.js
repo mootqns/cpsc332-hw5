@@ -3,7 +3,7 @@
 // Assignment: Homework 5
 // Last Modified: 10/25/2022
 
-var color1 = "#0095DD";
+var color1 = "#e76f51";
 
 window.onload = function () {
     var canvas = document.getElementById("myCanvas");
@@ -210,15 +210,30 @@ window.onload = function () {
 
     //draw the menu screen, including labels and button
     function drawMenu() {
+        //adding shadows
+        ctx.shadowColor = "black";
+        ctx.shadowBlur = 3;
         //draw the rectangle menu backdrop
-
+        ctx.fillStyle = "#2a9d8f";
+        ctx.fillRect(20, 20, 440, 280);
         //draw the menu header
-
+        ctx.font = "50px Belleza";
+        ctx.fillStyle = "#e9c46a";
+        ctx.textAlign = "center";
+        ctx.fillText("Breakout Game", canvas.width/2, (canvas.height/2) - 80);
         //start game button area
+        ctx.fillStyle = "#e9c46a";
+        ctx.fillRect((canvas.width/2) - 100, (canvas.height/2) - 40, 200, 60);
+
+        ctx.font = "30px Belleza";
+        ctx.fillStyle = "#ffffff";
+        ctx.textAlign = "center";
+        ctx.fillText("Start Game", (canvas.width/2), (canvas.height/2));
 
         //event listener for clicking start
+        canvas.addEventListener('click', startGameClick)
         //need to add it here because the menu should be able to come back after 
-        //we remove the it later                
+        //we remove it later                
     }
 
     //function used to set shadow properties
@@ -242,7 +257,8 @@ window.onload = function () {
     //i.e., did the user click in the bounds of where the button is drawn
     //if so, we want to trigger the draw(); function to start our game
     function startGameClick(event) {
-
+        //TODO, CHECK BOUNDS
+        draw();
     };
 
     //function to handle game speed adjustments when we move our slider
@@ -283,7 +299,8 @@ window.onload = function () {
     };
 
     //draw the menu.
-    //we don't want to immediately draw... only when we click start game            
-    // draw();
+    //we don't want to immediately draw... only when we click start game          
+    drawMenu();  
+    //draw();
 
 };//end window.onload function

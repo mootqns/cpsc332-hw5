@@ -9,7 +9,13 @@ Last Modified: 10/25/2022 */
 }
 
 canvas {
-    background: #fefae0;
+    background: #264653;
+    display: block;
+    margin: 0 auto;
+}
+
+#settings {
+    width: 480px;
     display: block;
     margin: 0 auto;
 }
