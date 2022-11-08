@@ -84,12 +84,12 @@ window.onload = function () {
                         if (score == brickRowCount * brickColumnCount) {
                             //TODO: draw message on the canvas
                             // alert("YOU WIN, CONGRATS!");
-                            ctx.font = "24px Arial";
+                            ctx.font = "36px Arial";
                             ctx.fillStyle = color1;
                             ctx.fillText("Game Paused; You Win!",  canvas.width/2, (canvas.height/2));
-                            //TODO: pause game instead of reloading
+                            // TODO: pause game instead of reloading
                             // document.location.reload();
-                            pause = true;
+                            paused = true;
                         }
                     }
                 }
@@ -167,7 +167,7 @@ window.onload = function () {
                 if (lives <= 0) {
                     //TODO: draw message on the canvas
                     // alert("GAME OVER");
-                    ctx.font = "24px Arial";
+                    ctx.font = "36px Arial";
                     ctx.fillStyle = color1;
                     ctx.fillText("Game Paused; You Lose :(",  canvas.width/2, (canvas.height/2));
                     //TODO: pause game instead of reloading
@@ -197,12 +197,12 @@ window.onload = function () {
 
 
         //TODO: pause game check
-        console.log(paused);
-        
-        if(!paused)
+        if(!paused) {
             animFrameId = requestAnimationFrame(draw);
-        else if(paused)
+        }
+        else if(paused) {
             cancelAnimationFrame(animFrameId);
+        }
         
     }
 
@@ -224,7 +224,9 @@ window.onload = function () {
            
     //start a new game event handler      
     const newGameBtn = document.getElementById("new-game");
-    newGameBtn.addEventListener("click", startNewGame);   
+    newGameBtn.addEventListener("click", () => {
+        startNewGame(true);
+    });   
 
     //continue playing
     const contBtn = document.getElementById("cont-playing");
@@ -234,8 +236,7 @@ window.onload = function () {
     const reloadBtn = document.getElementById("reload-window");
     reloadBtn.addEventListener("click", () => {
         document.location.reload();
-    });
-    // end reload window    
+    });   
 
     //Drawing a high score
     function drawHighScore() {
@@ -347,9 +348,8 @@ window.onload = function () {
         }
         else if(paused) {
            paused = false;
+           draw();
         }
-        
-        // console.log(paused)
     };
 
     //function to check win state
@@ -361,31 +361,44 @@ window.onload = function () {
 
     //function to clear the board state and start a new game (no high score accumulation)
     function startNewGame(resetScore) {
-        resetBoard();
+        if(resetScore) {
+            highScore = 0;
+            score = 0;
+            resetBoard(true);
+        } 
+        else if (!resetScore) {
+            highScore += score;
+            score = 0;
+            resetBoard(false);
+        }
     };
 
     //function to reset the board and continue playing (accumulate high score)
     //should make sure we didn't lose before accumulating high score
     function continuePlaying() {
-
+        startNewGame(false);
+        togglePauseGame();
     };
 
     //function to reset starting game info
     function resetBoard(resetLives) {
-        //reset paddle position
-        // drawPaddle();
-        // //reset bricks    
-        // drawBricks();
-        // //reset ball
-        // drawBall();
+        // reset ball
+        x = canvas.width / 2;
+        y = canvas.height - 30;
+        // reset paddle
+        paddleX = (canvas.width - paddleWidth) / 2; 
+        // reset bricks
+        bricks = []
+        for (var c = 0; c < brickColumnCount; c++) {
+            bricks[c] = [];
+            for (var r = 0; r < brickRowCount; r++) {
+                bricks[c][r] = { x: 0, y: 0, status: 1 };
+            }
+        }
 
-        //reset score/high-score and lives  
-        highScore = 0;
-        score = 0;
-        lives = 3;    
-        
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
+        if(resetLives){
+            lives = 3;
+        }
     };
 
     //draw the menu.
